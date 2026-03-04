@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy import Column, ForeignKey, Table
 
-DATABASE_URL = ""
+
+DATABASE_URL = "sqlite:///./sql_app.db"
 
 engine = create_engine(
     DATABASE_URL,
@@ -15,3 +17,11 @@ SessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+
+user_games_association = Table(
+    "user_games",
+    Base.metadata,
+    Column("user_id", ForeignKey("usuario.id"), primary_key=True),
+    Column("jogo_id", ForeignKey("jogos.id"), primary_key=True)
+)

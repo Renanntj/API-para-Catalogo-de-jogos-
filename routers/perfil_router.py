@@ -2,8 +2,8 @@ from fastapi import APIRouter
 
 router = APIRouter(prefix="/user", tags=["user"])
 
-# @router.get("/")
-# async def tela_principal():
-#     return {
-#         "message" "API para catalogo de jogos, posts e etc..."
-#     }
+# criçao de user para exemplo, por enquanto so um teste, sem login
+
+@router.post("/criar-usuario")
+async def criar_user(): # criar usuario
+    ...
