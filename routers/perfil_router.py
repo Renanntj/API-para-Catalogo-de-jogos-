@@ -23,9 +23,9 @@ async def criar_user(usuario_schema: CriarUsuarioSchema, session: Session = Depe
             raise HTTPException(status_code=400, detail="Nome de usuario existente")
         
         elif not verificar_usuario_valido(usuario_schema.usuario):
-            raise HTTPException(status_code=400, detail={
-                "message": "Nome de usuario deve ser minusculo, ter apenas nome, numero e '_', '-' e '.'"
-            })
+            raise HTTPException(status_code=400, detail=
+                "Nome de usuario deve ser minusculo, ter apenas letras, numero e '_', '-' e '.'"
+            )
         senha_segura = gerar_senha_hash(usuario_schema.senha)
         novo_usuario = User(usuario_schema.nome, usuario_schema.usuario, usuario_schema.email, senha_segura)
         session.add(novo_usuario)
