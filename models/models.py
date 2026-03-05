@@ -3,10 +3,10 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy import Column, ForeignKey, Table
 
 
-DATABASE_URL = "sqlite:///./sql_app.db"
+db = "sqlite:///./sql_app.db"
 
 engine = create_engine(
-    DATABASE_URL,
+    db,
     connect_args={"check_same_thread": False}
 )
 
@@ -15,6 +15,8 @@ SessionLocal = sessionmaker(
     autoflush=False,
     bind=engine
 )
+
+
 
 Base = declarative_base()
 

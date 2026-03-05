@@ -4,6 +4,8 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
 
+
+
 class User(Base):
     __tablename__ = "usuario"
     
@@ -15,7 +17,7 @@ class User(Base):
     usuario = Column(String, unique=True, nullable=False, index=True)
     email = Column(String, unique=True, nullable=False, index=True)
     senha = Column(String, nullable=False)
-    criado_em = Column(DateTime(timezone=True), server_default=func.now())
+    criado_em = Column(DateTime(timezone=True), server_default=func.now()) # adicionar foto de perfil
 
     # relacionamentos, para puxar os jogos e as publicações
     jogos = relationship("Jogos", secondary=user_games_association, back_populates="usuarios")
