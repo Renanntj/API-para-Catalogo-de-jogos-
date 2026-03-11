@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feed de Publicações</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #1a1a1a;
+            color: #eee;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .post {
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #007bff;
+        }
+
+        .post img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Minhas Publicações</h1>
+    <div id="feed">Carregando publicações...</div>
+
+    <script>
+        async function carregarPosts() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/principal/publicacoes');
+                const posts = await response.json();
+                const feed = document.getElementById('feed');
+                feed.innerHTML = '';
+
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post';
+                    // A imagem é buscada na rota de bytes que criamos antes
+                    postElement.innerHTML = `
+                        <h2>${post.titulo}</h2>
+                        <p>${post.descricao || 'Sem descrição'}</p>
+                        <small>Postado por ID: ${post.autor_id}</small>
+                        <img src="http://127.0.0.1:8000/publicacao/${post.id}/imagem" alt="Imagem do post">
+                    `;
+                    feed.appendChild(postElement);
+                });
+            } catch (error) {
+                document.getElementById('feed').innerText = 'Erro ao carregar posts. Verifique se a API está rodando!';
+            }
+        }
+
+        carregarPosts();
+    </script>
+</body>
+
+</html>
