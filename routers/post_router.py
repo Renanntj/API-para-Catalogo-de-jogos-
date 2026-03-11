@@ -7,13 +7,7 @@ from models.models_post import Publicacoes
 from models.models_user import User
 router_posts = APIRouter(prefix="/posts", tags=["posts"], dependencies=[Depends(verificar_token)])
 
-@router_posts.get("/publicacao/{pub_id}/imagem")
-def get_imagem_publicacao(pub_id: int, db: Session = Depends(abrir_sessao)):
-    pub = db.query(Publicacoes).filter(Publicacoes.id == pub_id).first()
-    
-    if not pub or not pub.imagem:
-        raise HTTPException(status_code=404, detail="Imagem ou não encontrada")
-    return Response(content=pub.imagem, media_type="image/jpeg")
+
 
 @router_posts.post("/criar-post", status_code=201)
 async def criar_post(

@@ -83,10 +83,3 @@ async def refresh_roter_auth(user: Session = Depends(verificar_token)):
     return {"access_token": access_token,
             "token_type": "Bearer"
         }
-# @router_user.delete("/deletar-user")
-# async def deletar(email_user: str, session: User = Depends(abrir_sessao)):
-    
-#     usuario = session.query(User).filter(email_user==User.email).first()
-    
-#     session.delete(usuario)
-#     session.commit()
