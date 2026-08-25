@@ -1,4 +1,4 @@
-# DevSpace — API de Rede Social
+# PulseAPI — API de Rede Social
 
 API REST para uma rede social minimalista voltada para desenvolvedores, construída com **FastAPI** e **SQLAlchemy**. Permite criação de usuários, autenticação com JWT e publicação de posts com imagens.
 
